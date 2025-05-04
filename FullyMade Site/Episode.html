@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Streaming Site</title>
+    <link rel="stylesheet" href="Episode.css">
+    <style>
+        /* Inline CSS for simplicity */
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #222; color: white; }
+        .logo { font-size: 24px; }
+        .search-bar input { padding: 5px; }
+        .search-bar button { background-color: #ff5c8d;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px; padding: 5px; }
+        nav a, nav button { background-color: #ff5c8d;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px; margin: 0 10px; text-decoration: none; }
+        nav button { background-color: #ff5c8d;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;padding: 5px 10px; cursor: pointer; }
+        main { display: flex; padding: 20px; }
+        aside { width: 20%; }
+        .episode-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+        .episode { padding: 10px; background: #ddd; border: none; cursor: pointer; }
+        .video-player { flex-grow: 1; margin: 0 20px; }
+        .video-frame video { width: 100%; height: 300px; }
+        .controls button { background-color: #ff5c8d;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;background-color: #ff5c8d;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;margin: 5px; padding: 5px; }
+        .anime-details img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">aniAnime</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search anime...">
+            <button>Filter</button>
+        </div>
+        <nav>
+            <button>Join now</button>
+            <a href="#">Watch Together</a>
+            <a href="#">Random</a>
+            <a href="#">Community</a>
+            <button>Login</button>
+        </nav>
+    </header>
+
+    <main>
+        <aside class="episodes-list">
+            <h3>Episodes</h3>
+            <div class="episode-grid">
+                <button class="episode" data-video="Ik Junoon (Paint it red) Full Song Zindagi Na Milegi Dobara _ Hrithik, Katrina, Farhan Akhtar.mp4">1</button>
+                <button class="episode" data-video="@ViewCinemas- Mechanic Rocky (2024) Telugu TRUE WEB-DL -.mkv">2</button>
+                <button class="episode" data-video="@ViewCinemas- Amaran (2024) Telugu TRUE WEB-DL - 1080p -.mkv">3</button>
+                <!-- Add more episodes with respective data-video attributes -->
+            </div>
+        </aside>
+
+        <section class="video-player">
+            <div class="video-frame">
+                <!-- Video player -->
+                <video 
+                    id="videoPlayer" 
+                    controls>
+                    <source src="Ik Junoon (Paint it red) Full Song Zindagi Na Milegi Dobara _ Hrithik, Katrina, Farhan Akhtar.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="controls">
+                <button>Expand</button>
+                <button>Light On</button>
+                <button>Auto Play</button>
+                <button>Auto Next</button>
+            </div>
+            <div class="server-options">
+                <p>Currently Watching <strong>Episode <span id="currentEpisode">1</span></strong></p>
+                <div class="server-buttons">
+                    <button>SUB: HD-1</button>
+                    <button>DUB: HD-1</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="anime-details">
+            <img src="boruto.jpg" alt="Anime Cover">
+            <h2>Anime Title: Boruto: Naruto Next Generations</h2>
+            <p class="rating">PG-13 | HD | 293 episodes | 23m</p>
+            <p>Summary: Following the end of the Fourth Shinobi World War...</p>
+            <button>View Details</button>
+            <div class="rating-buttons">
+                <p>Your rating?</p>
+                <button>Boring</button>
+                <button>Great</button>
+                <button>Amazing</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // JavaScript to handle episode switching
+        document.querySelectorAll('.episode').forEach(button => {
+            button.addEventListener('click', () => {
+                const videoUrl = button.getAttribute('data-video');
+                const episodeNumber = button.textContent;
+
+                // Update the video source
+                const videoPlayer = document.getElementById('videoPlayer');
+                videoPlayer.querySelector('source').src = videoUrl;
+                videoPlayer.load(); // Reload the video player with the new source
+
+                // Update the current episode display
+                document.getElementById('currentEpisode').textContent = episodeNumber;
+            });
+        });
+    </script>
+</body>
+</html>
